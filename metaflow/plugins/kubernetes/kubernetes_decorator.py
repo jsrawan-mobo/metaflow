@@ -95,6 +95,8 @@ class KubernetesDecorator(StepDecorator):
     defaults = {
         "cpu": "1",
         "memory": "4096",
+        "cpu_limits": "2",
+        "memory_limits": "8192",
         "disk": "10240",
         "image": None,
         "image_pull_policy": None,
@@ -276,7 +278,7 @@ class KubernetesDecorator(StepDecorator):
             )
 
         # CPU, Disk, and Memory values should be greater than 0.
-        for attr in ["cpu", "disk", "memory"]:
+        for attr in ["cpu", "disk", "memory", 'cpu_limits', 'memory_limits']:
             if not (
                 isinstance(self.attributes[attr], (int, unicode, basestring, float))
                 and float(self.attributes[attr]) > 0

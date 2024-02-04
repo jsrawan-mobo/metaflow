@@ -69,8 +69,10 @@ def kubernetes():
     help="Namespace for Kubernetes job.",
 )
 @click.option("--cpu", help="CPU requirement for Kubernetes pod.")
+@click.option("--cpu_limits", help="CPU limits for Kubernetes pod.")
 @click.option("--disk", help="Disk requirement for Kubernetes pod.")
 @click.option("--memory", help="Memory requirement for Kubernetes pod.")
+@click.option("--memory_limits", help="Memory limits for Kubernetes pod.")
 @click.option("--gpu", help="GPU requirement for Kubernetes pod.")
 @click.option("--gpu-vendor", help="GPU vendor requirement for Kubernetes pod.")
 @click.option("--resource-limits-memory", help="Memory limits for Kubernetes pod.")
@@ -130,8 +132,10 @@ def step(
     node_selector=None,
     k8s_namespace=None,
     cpu=None,
+    cpu_limits=None,
     disk=None,
     memory=None,
+    memory_limits=None,
     gpu=None,
     gpu_vendor=None,
     use_tmpfs=None,
@@ -245,8 +249,10 @@ def step(
                 node_selector=node_selector,
                 namespace=k8s_namespace,
                 cpu=cpu,
+                cpu_limits=cpu_limits,
                 disk=disk,
                 memory=memory,
+                memory_limits=memory_limits,
                 gpu=gpu,
                 gpu_vendor=gpu_vendor,
                 use_tmpfs=use_tmpfs,
