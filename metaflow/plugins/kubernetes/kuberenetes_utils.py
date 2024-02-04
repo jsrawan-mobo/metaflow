@@ -4,10 +4,8 @@ from metaflow.tracing import inject_tracing_vars
 
 def compute_resource_limits(args):
     limits_dict = dict()
-    if args.get("resource_limits_memory", None):
-        limits_dict["memory"] = "%sM" % str(args["resource_limits_memory"])
-    if args.get("resource_limits_cpu", None):
-        limits_dict["cpu"] = str(args["resource_limits_cpu"])
+    limits_dict["memory"] = "%sM" % args.get("memory_limits", args.get("memory"))
+    limits_dict["cpu"] = args.get("cpu_limits", args.get("cpu"))
     if args["gpu"] is not None:
         limits_dict["%s.com/gpu".lower() % args["gpu_vendor"]] = str(args["gpu"])
     return limits_dict
